@@ -1,25 +1,3 @@
-<template>
-  <div class="layout">
-    <!-- 左側 Menu Bar -->
-    <aside class="menu-bar">
-      <div
-        class="menu-item"
-        :class="{ active: isActive(item.route) }"
-        v-for="item in menuItems"
-        :key="item.name"
-        @click="onMenuClick(item)"
-      >
-        <img :src="item.icon" :alt="item.name" class="menu-icon" />
-      </div>
-    </aside>
-
-    <!-- 主內容區域 -->
-    <main class="main-content">
-      <slot />
-    </main>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
@@ -41,6 +19,28 @@ const onMenuClick = (item: { name: string; icon: string; route: string }) => {
   router.push(item.route)
 }
 </script>
+
+<template>
+  <div class="layout">
+    <!-- 左側 Menu Bar -->
+    <aside class="menu-bar">
+      <div
+        class="menu-item"
+        :class="{ active: isActive(item.route) }"
+        v-for="item in menuItems"
+        :key="item.name"
+        @click="onMenuClick(item)"
+      >
+        <img :src="item.icon" :alt="item.name" class="menu-icon" />
+      </div>
+    </aside>
+
+    <!-- 主內容區域 -->
+    <main class="main-content">
+      <slot />
+    </main>
+  </div>
+</template>
 
 <style scoped>
 .layout {
